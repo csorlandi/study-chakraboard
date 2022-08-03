@@ -1,5 +1,6 @@
 import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 
 import { Header } from '../components/Header';
 import { Sidebar } from '../components/Sidebar';
@@ -63,6 +64,10 @@ const series = [
 ];
 
 export default function Dashboard() {
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+  useEffect(() => setIsPageLoaded(true), []);
+
   return (
     <Flex direction="column" h="100vh">
       <Header />
@@ -80,13 +85,27 @@ export default function Dashboard() {
             <Text fontSize="large" mb="4">
               Inscritos da semana
             </Text>
-            <Chart options={options} series={series} type="area" height={160} />
+            {isPageLoaded && (
+              <Chart
+                options={options}
+                series={series}
+                type="area"
+                height={160}
+              />
+            )}
           </Box>
           <Box p={['6', '8']} bg="gray.800" borderRadius={8}>
             <Text fontSize="large" mb="4">
               Taxa de abertura
             </Text>
-            <Chart options={options} series={series} type="area" height={160} />
+            {isPageLoaded && (
+              <Chart
+                options={options}
+                series={series}
+                type="area"
+                height={160}
+              />
+            )}
           </Box>
         </SimpleGrid>
       </Flex>
