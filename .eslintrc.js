@@ -42,7 +42,8 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    'no-promise-executor-return': 'off'
   },
   settings: {
     'import/resolver': {
